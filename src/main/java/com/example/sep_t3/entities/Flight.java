@@ -1,27 +1,41 @@
 package com.example.sep_t3.entities;
 
-import java.util.Collection;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
-public class Flight {
+@Entity
+@Table(name = "flights")
+public class Flight implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int flightId;
+    @Column(name="aircraftCode")
     private int aircraftCode;
+    @Column(name="airline")
     private String airline;
+    @Column(name="origin")
     private String origin;
+    @Column(name="destination")
     private String destination;
+    @Column(name="departure_date")
     private String departureDate;
+    @Column(name="arrival_date")
     private String arrivalDate;
-    private int duration;
-    private int numberOfBookableSeats;
+    @Column(name="duration")
+    private String duration;
+    @Column(name="status")
     private String status;
-    private Collection<AdditionalServices> additionalServices;
-    private Collection<Price> prices;
 
-    public Flight()
-    {
-    }
+    @OneToMany
+    private List<AdditionalService> additionalServices;
 
-    public Flight(int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, int duration, int numberOfBookableSeats, String status)
-    {
+    @OneToMany
+    private List<Seat> seats;
+
+    public Flight(){}
+
+    public Flight(int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status) {
         this.aircraftCode = aircraftCode;
         this.airline = airline;
         this.origin = origin;
@@ -29,27 +43,10 @@ public class Flight {
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.duration = duration;
-        this.numberOfBookableSeats = numberOfBookableSeats;
         this.status = status;
     }
 
-    public Flight(int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, int duration, int numberOfBookableSeats, String status, Collection<AdditionalServices> additionalServices, Collection<Price> prices)
-    {
-        this.aircraftCode = aircraftCode;
-        this.airline = airline;
-        this.origin = origin;
-        this.destination = destination;
-        this.departureDate = departureDate;
-        this.arrivalDate = arrivalDate;
-        this.duration = duration;
-        this.numberOfBookableSeats = numberOfBookableSeats;
-        this.status = status;
-        this.additionalServices = additionalServices;
-        this.prices = prices;
-    }
-
-    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, int duration, int numberOfBookableSeats, String status, Collection<AdditionalServices> additionalServices, Collection<Price> prices)
-    {
+    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status) {
         this.flightId = flightId;
         this.aircraftCode = aircraftCode;
         this.airline = airline;
@@ -58,129 +55,122 @@ public class Flight {
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.duration = duration;
-        this.numberOfBookableSeats = numberOfBookableSeats;
+        this.status = status;
+    }
+
+    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status, List<AdditionalService> additionalServices, List<Seat> seats) {
+        this.flightId = flightId;
+        this.aircraftCode = aircraftCode;
+        this.airline = airline;
+        this.origin = origin;
+        this.destination = destination;
+        this.departureDate = departureDate;
+        this.arrivalDate = arrivalDate;
+        this.duration = duration;
         this.status = status;
         this.additionalServices = additionalServices;
-        this.prices = prices;
+        this.seats = seats;
     }
 
-    public int getFlightId()
-    {
-        return flightId;
-    }
-
-    public void setFlightId(int flightId)
-    {
-        this.flightId = flightId;
-    }
-
-    public int getAircraftCode()
-    {
+    public int getAircraftCode() {
         return aircraftCode;
     }
 
-    public void setAircraftCode(int aircraftCode)
-    {
+    public void setAircraftCode(int aircraftCode) {
         this.aircraftCode = aircraftCode;
     }
 
-    public String getAirline()
-    {
+    public String getAirline() {
         return airline;
     }
 
-    public void setAirline(String airline)
-    {
+    public void setAirline(String airline) {
         this.airline = airline;
     }
 
-    public String getOrigin()
-    {
+    public String getOrigin() {
         return origin;
     }
 
-    public void setOrigin(String origin)
-    {
+    public void setOrigin(String origin) {
         this.origin = origin;
     }
 
-    public String getDestination()
-    {
+    public String getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination)
-    {
+    public void setDestination(String destination) {
         this.destination = destination;
     }
 
-    public String getDepartureDate()
-    {
+    public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate)
-    {
+    public void setDepartureDate(String departureDate) {
         this.departureDate = departureDate;
     }
 
-    public String getArrivalDate()
-    {
+    public String getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(String arrivalDate)
-    {
+    public void setArrivalDate(String arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public int getDuration()
-    {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration)
-    {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
-    public int getNumberOfBookableSeats()
-    {
-        return numberOfBookableSeats;
-    }
-
-    public void setNumberOfBookableSeats(int numberOfBookableSeats)
-    {
-        this.numberOfBookableSeats = numberOfBookableSeats;
-    }
-
-    public String getStatus()
-    {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(String status)
-    {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Collection<AdditionalServices> getAdditionalServices()
-    {
+    public int getFlightId() {
+        return flightId;
+    }
+
+    public void setFlightId(int flightId) {
+        this.flightId = flightId;
+    }
+
+    public List<AdditionalService> getAdditionalServices() {
         return additionalServices;
     }
 
-    public void setAdditionalServices(Collection<AdditionalServices> additionalServices)
-    {
+    public void setAdditionalServices(List<AdditionalService> additionalServices) {
         this.additionalServices = additionalServices;
     }
 
-    public Collection<Price> getPrices()
-    {
-        return prices;
+    public List<Seat> getSeats() {
+        return seats;
     }
 
-    public void setPrices(Collection<Price> prices)
-    {
-        this.prices = prices;
+    public void setSeats(List<Seat> prices) {
+        this.seats = prices;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "aircraftCode=" + aircraftCode +
+                ", airline='" + airline + '\'' +
+                ", origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", departureDate=" + departureDate +
+                ", arrivalDate=" + arrivalDate +
+                ", duration=" + duration +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

@@ -28,32 +28,17 @@ public class FlightDAOImpl implements FlightDAO, Serializable
 
     private Connection getConnection() throws SQLException
     {
-        return DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com/dlipccbr?currentSchema=\"AirlineBooking\"", "dlipccbr", "dyaVKFWkG-yOT4LR07Eydu6QtTEjcDtu");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
     }
 
-    @Override
-    public List<Flight> getFlightsByParam(String origin, String destination, String departureDate)
-    {
-        return null;
-    }
 
     @Override
     public Flight createFlight(Flight flight)
     {
-        Flight result = new Flight();
+        Flight result = null;
         try (Connection connection = getConnection())
         {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO flights (flightId, aircraftCode, airline, origin, destination, departureDate, arrivalDate, duration, numberOfBookableSeats, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            statement.setInt(1, flight.getFlightId());
-            statement.setInt(2, flight.getAircraftCode());
-            statement.setString(3, flight.getAirline());
-            statement.setString(4, flight.getOrigin());
-            statement.setString(5, flight.getDestination());
-            statement.setString(6, flight.getDepartureDate());
-            statement.setString(7, flight.getArrivalDate());
-            statement.setInt(8, flight.getDuration());
-            statement.setInt(9, flight.getNumberOfBookableSeats());
-            statement.setString(10, flight.getStatus());
             statement.executeQuery();
 
         } catch (SQLException e) {
@@ -99,8 +84,8 @@ public class FlightDAOImpl implements FlightDAO, Serializable
                 int duration = resultSet.getInt("duration");
                 int numberOfBookableSeats = resultSet.getInt("numberOfBookableSeats");
                 String status = resultSet.getString("status");
-                Flight flight = new Flight(flightId, aircraftCode, airline, origin, destination, departureDate, arrivalDate, duration, numberOfBookableSeats, status, new ArrayList<>());
-                result.add(flight);
+                //Flight flight = new Flight(flightId, aircraftCode, airline, origin, destination, departureDate, arrivalDate, duration, status, new ArrayList<>());
+                //result.add(flight);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

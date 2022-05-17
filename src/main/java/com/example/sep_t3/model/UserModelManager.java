@@ -2,9 +2,11 @@ package com.example.sep_t3.model;
 
 import com.example.sep_t3.dao.UserDAOImpl;
 import com.example.sep_t3.entities.User;
-import java.sql.SQLException;
-import java.util.Collection;
 
+import javax.transaction.Transactional;
+import java.sql.SQLException;
+
+@Transactional
 public class UserModelManager implements UserModel {
 
   private UserDAOImpl userDAO;
@@ -33,22 +35,13 @@ public class UserModelManager implements UserModel {
   }
 
   @Override
-  public User getUserById(int id) {
-    return userDAO.getUserById(id);
+  public User getUserByEmail(String email) {
+    return userDAO.getUserByEmail(email);
   }
 
-  @Override
-  public Collection<User> getAllUsers() {
-    return userDAO.getAllUsers();
-  }
 
   @Override
   public boolean findEmail(String email) {
     return userDAO.findEmail(email);
-  }
-
-  @Override
-  public User getUserByEmail(String email) {
-    return userDAO.getUserByEmail(email);
   }
 }
