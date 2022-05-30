@@ -20,15 +20,15 @@ public class UserDAOImpl implements UserDAO {
     }
 
     private Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
+        //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
+        return DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com/dlipccbr", "dlipccbr", "dyaVKFWkG-yOT4LR07Eydu6QtTEjcDtu");
     }
-
 
     @Override
     public User saveUser(User user) {
         User result = null;
         try (Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO public.users (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, ?)",  PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO users (first_name, last_name, email, password, role) VALUES (?, ?, ?, ?, ?)",  PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setString(3, user.getEmail());
@@ -48,12 +48,11 @@ public class UserDAOImpl implements UserDAO {
         return result;
     }
 
-
     @Override
     public boolean updateUser(User user) {
         boolean result = false;
         try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("UPDATE public.users SET firstname = ?, lastname = ?, email = ?, password = ? WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?");
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setString(3, user.getEmail());
@@ -71,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean deleteUser(int id) {
         boolean result = false;
         try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM public.users WHERE id = ?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM users WHERE id = ?");
             statement.setInt(1, id);
             statement.executeUpdate();
             result = true;
@@ -85,7 +84,7 @@ public class UserDAOImpl implements UserDAO {
     public User getUserByEmail(String email) {
         User result = null;
         try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM public.users WHERE email = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email = ?");
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.isBeforeFirst()){
@@ -108,7 +107,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean findEmail(String email) {
         boolean result = false;
         try(Connection connection = getConnection()) {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM public.users WHERE email = ?");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE email = ?");
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.isBeforeFirst()){

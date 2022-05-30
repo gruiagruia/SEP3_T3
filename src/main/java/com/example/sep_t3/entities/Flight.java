@@ -2,6 +2,7 @@ package com.example.sep_t3.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,10 +29,10 @@ public class Flight implements Serializable {
     private String status;
 
     @OneToMany
-    private List<AdditionalService> additionalServices;
+    private ArrayList<AdditionalService> additionalServices;
 
     @OneToMany
-    private List<Seat> seats;
+    private ArrayList<Seat> seats;
 
     public Flight(){}
 
@@ -57,7 +58,7 @@ public class Flight implements Serializable {
         this.duration = duration;
     }
 
-    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status, List<AdditionalService> additionalServices, List<Seat> seats) {
+    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status, ArrayList<AdditionalService> additionalServices, ArrayList<Seat> seats) {
         this.flightId = flightId;
         this.aircraftCode = aircraftCode;
         this.airline = airline;
@@ -147,7 +148,7 @@ public class Flight implements Serializable {
         return additionalServices;
     }
 
-    public void setAdditionalServices(List<AdditionalService> additionalServices) {
+    public void setAdditionalServices(ArrayList<AdditionalService> additionalServices) {
         this.additionalServices = additionalServices;
     }
 
@@ -155,8 +156,8 @@ public class Flight implements Serializable {
         return seats;
     }
 
-    public void setSeats(List<Seat> prices) {
-        this.seats = prices;
+    public void setSeats(ArrayList<Seat> seats) {
+        this.seats = seats;
     }
 
     @Override

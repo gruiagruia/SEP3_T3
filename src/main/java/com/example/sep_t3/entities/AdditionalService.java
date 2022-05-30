@@ -9,8 +9,8 @@ public class AdditionalService implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int additionalServiceId;
-    @Column(name="type")
-    private String type;
+    @Column(name="serviceType")
+    private String serviceType;
     @Column(name="available")
     private boolean available;
     @Column(name="price")
@@ -21,9 +21,51 @@ public class AdditionalService implements Serializable {
 
     public AdditionalService(){}
 
-    public AdditionalService(String type, boolean available, double price) {
-        this.type = type;
+    public AdditionalService(String serviceType, boolean available, double price) {
+        this.serviceType = serviceType;
         this.available = available;
         this.price = price;
     }
+
+    public int getAdditionalServiceId() {
+        return additionalServiceId;
+    }
+
+    public void setAdditionalServiceId(int additionalServiceId) {
+        this.additionalServiceId = additionalServiceId;
+    }
+
+    public String getServiceType()
+    {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getFlight_id() {
+        return flight_id;
+    }
+
+    public void setFlight_id(int flight_id) {
+        this.flight_id = flight_id;
+    }
 }
+

@@ -2,10 +2,11 @@ package com.example.sep_t3.model;
 
 import com.example.sep_t3.entities.Flight;
 
-import java.util.List;
+import java.util.Collection;
 
-public interface FlightModel {
+public interface FlightModel
+{
     Flight createFlight(Flight flight);
-    boolean deleteFlight(int id);
-    List<Flight> getAllFlights();
+    boolean deleteFlight(int flightId);
+    Collection<Flight> getAllFlights();
 }
