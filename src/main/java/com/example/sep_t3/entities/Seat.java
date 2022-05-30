@@ -29,4 +29,54 @@ public class Seat implements Serializable {
         this.currency = currency;
         this.numberOfBookableSeats = numberOfBookableSeats;
     }
+
+    public int getSeatId() {
+        return seatId;
+    }
+
+    public void setSeatId(int seatId) {
+        this.seatId = seatId;
+    }
+
+    public String getTravelClass()
+    {
+        return travelClass;
+    }
+
+    public void setTravelClass(String travelClass)
+    {
+        this.travelClass = travelClass;
+    }
+
+    public double getPricePerSeat() {
+        return pricePerSeat;
+    }
+
+    public void setPricePerSeat(double pricePerSeat) {
+        this.pricePerSeat = pricePerSeat;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public int getNumberOfBookableSeats() {
+        return numberOfBookableSeats;
+    }
+
+    public void setNumberOfBookableSeats(int numberOfBookableSeats) {
+        this.numberOfBookableSeats = numberOfBookableSeats;
+    }
+
+    public int getFlight_id() {
+        return flight_id;
+    }
+
+    public void setFlight_id(int flight_id) {
+        this.flight_id = flight_id;
+    }
 }
