@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TripDAO {
     List<Trip> getTripsByParam(Trip trip);
-    Collection<Trip> getTripByParam(String origin, String destination, String departureDate, boolean oneWay, String travelClass, int passengers, String returnDate);
+
 }
