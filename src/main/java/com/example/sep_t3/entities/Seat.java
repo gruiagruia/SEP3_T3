@@ -29,4 +29,13 @@ public class Seat implements Serializable {
         this.currency = currency;
         this.numberOfBookableSeats = numberOfBookableSeats;
     }
+
+    public Seat(int seatId, String travelClass, double pricePerSeat, String currency, int numberOfBookableSeats, int flight_id) {
+        this.seatId = seatId;
+        this.travelClass = travelClass;
+        this.pricePerSeat = pricePerSeat;
+        this.currency = currency;
+        this.numberOfBookableSeats = numberOfBookableSeats;
+        this.flight_id = flight_id;
+    }
 }

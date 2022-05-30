@@ -46,7 +46,7 @@ public class Flight implements Serializable {
         this.status = status;
     }
 
-    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status) {
+    public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration) {
         this.flightId = flightId;
         this.aircraftCode = aircraftCode;
         this.airline = airline;
@@ -55,7 +55,6 @@ public class Flight implements Serializable {
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.duration = duration;
-        this.status = status;
     }
 
     public Flight(int flightId, int aircraftCode, String airline, String origin, String destination, String departureDate, String arrivalDate, String duration, String status, List<AdditionalService> additionalServices, List<Seat> seats) {
