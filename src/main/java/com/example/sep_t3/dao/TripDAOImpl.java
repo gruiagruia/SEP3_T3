@@ -32,7 +32,8 @@ public class TripDAOImpl implements TripDAO{
         List<Trip> result = null;
         try(Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM public.flights INNER JOIN public.seats ON public.flights.flight_id = public.seats.flight_id WHERE origin = ? AND destination = ? AND departure_date LIKE ? AND travel_class = ? AND number_of_bookable_seats > 0");
+                    "SELECT * FROM public.flights INNER JOIN public.seats ON public.flights.flight_id = public.seats.flight_id " +
+                            "WHERE origin = ? AND destination = ? AND departure_date LIKE ? AND travel_class = ? AND number_of_bookable_seats > 0");
             statement.setString(1, trip.getOrigin());
             statement.setString(2, trip.getDestination());
             statement.setString(3, trip.getDepartureDate()+"%");
@@ -40,6 +41,7 @@ public class TripDAOImpl implements TripDAO{
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.isBeforeFirst()){
                 if (resultSet.next()) {
+
                     //Flight Info
                     int id = resultSet.getInt("flight_id");
                     int aircraftCode = resultSet.getInt("aircraft_code");
@@ -48,7 +50,7 @@ public class TripDAOImpl implements TripDAO{
                     String departureDate = resultSet.getString("departure_date");
                     String duration = resultSet.getString("duration");
                     Flight flight = new Flight(id, aircraftCode, airline, trip.getOrigin(), trip.getDestination(), departureDate, arrivalDate, duration);
-                    System.out.println(flight.toString());
+
                     //Seats Info
                     int seat_id = resultSet.getInt("seat_id");
                     int numberOfBookableSeats = resultSet.getInt("number_of_bookable_seats");

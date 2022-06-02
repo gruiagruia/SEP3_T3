@@ -29,8 +29,7 @@ public class FlightDAOImpl implements FlightDAO, Serializable
 
     private Connection getConnection() throws SQLException
     {
-        //return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
-        return DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com/dlipccbr", "dlipccbr", "dyaVKFWkG-yOT4LR07Eydu6QtTEjcDtu");
+        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "0420");
     }
 
     @Override
@@ -60,10 +59,10 @@ public class FlightDAOImpl implements FlightDAO, Serializable
             for (int i = 0; i<flight.getSeats().size(); i++)
             {
                 PreparedStatement statement1 = connection.prepareStatement("INSERT INTO seats (travelClass, pricePerSeat, currency, numberOfBookableSeats, flight_id) VALUES (?, ?, ?, ?, ?)");
-                statement1.setString(1, flight.getSeats().get(i).getTravelClass());
-                statement1.setDouble(2, flight.getSeats().get(i).getPricePerSeat());
-                statement1.setString(3, flight.getSeats().get(i).getCurrency());
-                statement1.setInt(4, flight.getSeats().get(i).getNumberOfBookableSeats());
+//                statement1.setString(1, flight.getSeats().get(i).getTravelClass());
+//                statement1.setDouble(2, flight.getSeats().get(i).getPricePerSeat());
+//                statement1.setString(3, flight.getSeats().get(i).getCurrency());
+//                statement1.setInt(4, flight.getSeats().get(i).getNumberOfBookableSeats());
                 statement1.setInt(5, flightId);
                 statement1.executeQuery();
             }

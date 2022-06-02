@@ -7,9 +7,14 @@ import javax.transaction.Transactional;
 @Transactional
 public interface UserModel
 {
-  User saveUser(User user);
-  boolean updateUser(User user);
+  void saveUser(User user);
+  void updateUser(User user);
   boolean deleteUser(int id);
   User getUserByEmail(String email);
+
+  User getUserById(int id);
+
   boolean findEmail(String email);
+
+
 }

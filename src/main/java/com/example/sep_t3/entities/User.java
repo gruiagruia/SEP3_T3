@@ -2,6 +2,7 @@ package com.example.sep_t3.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "users")
@@ -11,22 +12,20 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="first_name")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
-
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="role")
+    @Column(name = "role")
     private String role;
 
-    public User(){}
+    public User() {}
 
     public User(int id, String firstName, String lastName, String email, String password, String role) {
         this.id = id;
@@ -37,7 +36,7 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public User(String firstName, String lastName, String email, String password, String role) {
+    public User(String firstName, String lastName, String email, String password, String roles) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -92,7 +91,7 @@ public class User implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +
+                ", roles=" + role +
                 '}';
     }
 }

@@ -43,10 +43,8 @@ public class TripHandler implements Runnable{
     }
 
     private void pointToMethod(String req){
-        switch(req) {
-            case "get trips by param":
-                getTripsByParam();
-                break;
+        if ("get trips by param".equals(req)) {
+            getTripsByParam();
         }
     }
 
